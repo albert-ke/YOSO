@@ -7,7 +7,7 @@ $(document).ready(function() {
 })
 
 function displayListCallback(result) {
-	var item = '<div class="cell row {{status}}">' +
+	var item = '<li class="cell row {{status}}">' +
 						 '	<div class="item col-xs-offset-1 col-xs-8">' +
 						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
 						 '		<div class="item-owner">{{creator}}</div>' +
@@ -15,7 +15,7 @@ function displayListCallback(result) {
 						 '	<div class="check col-xs-2 {{priority}}">' +
 						 '		<div class="symbol">+</div>' +
 						 ' 	</div>' +
-						 '</div>';
+						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
 	
@@ -56,6 +56,9 @@ function displayListCallback2(result) {
 }
 
 function init() {
+
+	$("ul").sortable();
+
 	// change appearance of selected option
 	$(".options-selector").unbind("click").click(changeOption);
 	$(".selected").trigger("click");
