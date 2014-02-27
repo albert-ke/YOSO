@@ -60,7 +60,7 @@ function init() {
 	$(".selected").trigger("click");
 
 	// indicate item is selected
-	$(".check").click(selectItem);
+	$(".check").unbind("click").click(selectItem);
 
 	// remove completed items
 	$(".complete-button").click(completeItems);
@@ -171,6 +171,7 @@ function changeOption(e) {
 		$("footer").show();
 
 		$(".complete-button").click(completeItems);
+		$(".check").unbind("click").click(selectItem);
 	}
 	if (display == "done") {
 		$(".todo").hide();
@@ -179,11 +180,13 @@ function changeOption(e) {
 		$("footer").show();
 
 		$(".undo-button").click(undoItems);
+		$(".check").unbind("click").click(selectItem);
 	}
 	if (display == "all") {
 		$(".todo").show();
 		$(".done").show();
 		$("footer").hide();
+		$(".check").unbind("click");
 	}
 }
 
