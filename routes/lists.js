@@ -33,16 +33,30 @@ exports.update = function(req, res) {
 }
 
 exports.deleteItem = function(req, res) {
-	items = req.body;
+	itemstodelete = req.body;
+console.log(itemstodelete);
+console.log("cow");
 
+	for (i = 0; i < lists["contents"].length; i++) {
+		console.log(i, "!");
+		if (lists["contents"][i]["name"] in itemstodelete) {
+			console.log("name", lists["contents"][i]["name"]);
+			console.log("before: ", lists["contents"])
+			lists["contents"].splice(i, 1);
+			console.log("after: ", lists["contents"])
+		}
+	}
+/*
 	lists["contents"].forEach(function(item) {
 		if (items[item["name"]]) {
+			console.log("deleting", items[item["name"]]);
 			var index = lists["contents"].indexOf(item);
 			lists["contents"].splice(index, index+1);
 			console.log('index', index, "item", item);
 		}
-	});
-
+	});*/
+console.log(lists);
+console.log("moose");
 	res.json(lists);
 }
 

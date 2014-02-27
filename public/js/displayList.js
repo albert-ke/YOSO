@@ -27,6 +27,7 @@ function displayListCallback(result) {
 	$('.main').html(mainHTML);
 	init();
 	console.log("end of callback");
+	$("*[name=new]").focus();
 }
 
 function displayListCallback2(result) {
@@ -56,16 +57,16 @@ function displayListCallback2(result) {
 
 function init() {
 	// change appearance of selected option
-	$(".options-selector").click(changeOption);
+	$(".options-selector").unbind("click").click(changeOption);
 	$(".selected").trigger("click");
 
 	// indicate item is selected
 	$(".check").unbind("click").click(selectItem);
 
 	// remove completed items
-	$(".complete-button").click(completeItems);
-	$(".undo-button").click(undoItems);
-	$(".delete-button").click(deleteItems);
+	$(".complete-button").unbind("click").click(completeItems);
+	$(".undo-button").unbind("click").click(undoItems);
+	$(".delete-button").unbind("click").click(deleteItems);
 
 	// for editing
 	$(".item-name").blur(editName);
@@ -170,7 +171,7 @@ function changeOption(e) {
 		$(".undo-button").addClass("complete-button").removeClass("undo-button");
 		$("footer").show();
 
-		$(".complete-button").click(completeItems);
+		$(".complete-button").unbind("click").click(completeItems);
 		$(".check").unbind("click").click(selectItem);
 	}
 	if (display == "done") {
@@ -179,7 +180,7 @@ function changeOption(e) {
 		$(".complete-button").addClass("undo-button").removeClass("complete-button");
 		$("footer").show();
 
-		$(".undo-button").click(undoItems);
+		$(".undo-button").unbind("click").click(undoItems);
 		$(".check").unbind("click").click(selectItem);
 	}
 	if (display == "all") {
@@ -198,13 +199,13 @@ function changeOption(e) {
 function selectItem(e) {
 	$(this).siblings(".item").addClass("checked");
 	$(this).children().text("-");
-	$(this).click(deselectItem);
+	$(this).unbind("click").click(deselectItem);
 }
 
 function deselectItem(e) {
 	$(this).siblings(".item").removeClass("checked");
 	$(this).children().text("+");
-	$(this).click(selectItem);
+	$(this).unbind("click").click(selectItem);
 }
 
 function hideChecked(e) {
