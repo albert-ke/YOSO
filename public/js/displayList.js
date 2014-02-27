@@ -200,12 +200,21 @@ function selectItem(e) {
 	$(this).siblings(".item").addClass("checked");
 	$(this).children().text("-");
 	$(this).unbind("click").click(deselectItem);
+
+	$(this).siblings(".item").children("input").prop("disabled", function () {
+		return ! $(this).prop("disabled");
+	});
 }
 
 function deselectItem(e) {
 	$(this).siblings(".item").removeClass("checked");
 	$(this).children().text("+");
 	$(this).unbind("click").click(selectItem);
+
+	$(this).siblings(".item").children("input").prop("disabled", function () {
+		return ! $(this).prop("disabled");
+	});
+
 }
 
 function hideChecked(e) {
