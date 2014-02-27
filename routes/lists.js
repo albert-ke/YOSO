@@ -38,12 +38,13 @@ console.log(itemstodelete);
 console.log("cow");
 
 	for (i = 0; i < lists["contents"].length; i++) {
-		console.log(i, "!");
+		console.log(i, lists["contents"][i]["name"], "!");
 		if (lists["contents"][i]["name"] in itemstodelete) {
-			console.log("name", lists["contents"][i]["name"]);
-			console.log("before: ", lists["contents"])
+			console.log("delete name", lists["contents"][i]["name"]);
+			//console.log("before: ", lists["contents"])
 			lists["contents"].splice(i, 1);
-			console.log("after: ", lists["contents"])
+			i--;
+			//console.log("after: ", lists["contents"])
 		}
 	}
 /*
