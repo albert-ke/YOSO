@@ -10,7 +10,7 @@ var handlebars = require('express3-handlebars')
 
 var index = require('./routes/index');
 var lists = require('./routes/lists');
-var friends = require('./routes/friends');
+//var friends = require('./routes/friends');
 
 // Example route
 // var user = require('./routes/user');
@@ -41,6 +41,11 @@ if ('development' == app.get('env')) {
 app.get('/', index.view);
 app.get('/tab', index.tab);
 
+app.get('/lists/test', lists.test);
+app.post('/items/delete/', lists.deleteItem);
+app.get('/items/update/:oldname/:newname', lists.update);
+app.get('/items/add/', lists.addItem);
+
 app.get('/lists/all', lists.listAll);
 app.get('/list/edit/listAdd', lists.listAdd);
 app.get('/list/edit/listDelete/:list', lists.listDelete);
@@ -49,9 +54,9 @@ app.get('/list/contents/:list', lists.listContents);
 app.get('/list/edit/itemAdd/:list', lists.itemAdd);
 app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 
-app.get('/friends/all', friends.listAll);
-app.get('/friends/edit/friendAdd', friends.friendAdd);
-app.get('/friends/edit/friendDelete/:firstname/:lastname', friends.friendDelete);
+//app.get('/friends/all', friends.listAll);
+//app.get('/friends/edit/friendAdd', friends.friendAdd);
+//app.get('/friends/edit/friendDelete/:firstname/:lastname', friends.friendDelete);
 
 // Example route
 // app.get('/users', user.list);

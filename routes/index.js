@@ -1,7 +1,8 @@
 var data = require('../data.json');
+var lists = require('../lists.json');
 
 exports.view = function(req, res) {
-	res.render('index', data);
+	res.render('list', lists);
 };
 
 exports.tab = function(req, res) {

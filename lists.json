@@ -1,0 +1,52 @@
+{
+	"contents": [
+		{
+			"name": "cottage cheese",
+			"creator": "Bert Yee",
+			"status": "todo",
+			"priority": "yellow"
+		},
+		{
+			"name": "roast duck",
+			"creator": "Justin Yu",
+			"status": "todo",
+			"priority": "yellow"
+		},
+		{
+			"name": "moose",
+			"creator": "Albert Ke",
+			"status": "done",
+			"priority": "yellow"
+		},
+		{
+			"name": "roast duck",
+			"creator": "You",
+			"status": "todo",
+			"priority": "yellow"
+		},
+		{
+			"name": "gummy bears",
+			"creator": "Greg Chan",
+			"status": "done",
+			"priority": "yellow"
+		},
+		{
+			"name": "2 packs of ribs",
+			"creator": "Jon Corea",
+			"status": "todo",
+			"priority": "yellow"
+		},
+		{
+			"name": "16-pack Sprecher cherry cola",
+			"creator": "Kyle Poland",
+			"status": "todo",
+			"priority": "yellow"
+		},
+		{
+			"name": "yogurt",
+			"creator": "You",
+			"status": "todo",
+			"priority": "yellow"
+		}
+	]
+}

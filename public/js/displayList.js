@@ -1,105 +1,269 @@
-function displayList(e) {
-console.log(currentList);
-	//if ($(this).attr("id") != undefined) {
-		currentList = $(this).attr("id");
-//		console.log("setting currentList to " + currentList);
-//	}
-	var getURL = "/list/contents/" + currentList;
+'use strict';
+
+$(document).ready(function() {
+	console.log('moose');
+	var getURL = "/lists/test";
+	$.get(getURL, displayListCallback);
+})
+
+function displayListCallback(result) {
+	var item = '<div class="cell row {{status}}">' +
+						 '	<div class="item col-xs-offset-1 col-xs-8">' +
+						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
+						 '		<div class="item-owner">{{creator}}</div>' +
+						 '	</div>' +
+						 '	<div class="check col-xs-2 {{priority}}">' +
+						 '		<div class="symbol">+</div>' +
+						 ' 	</div>' +
+						 '</div>';
+
+	var itemTemplate = Handlebars.compile(item);
+	
+	var mainHTML = '';
+	result["contents"].sort(sortName).forEach(function(item) {
+		mainHTML += itemTemplate(item);
+	});
+
+	$('.main').html(mainHTML);
+	init();
+	console.log("end of callback");
+}
+
+function displayListCallback2(result) {
+	var item = '<div class="cell row {{status}}">' +
+						 '	<div class="item col-xs-offset-1 col-xs-8">' +
+						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
+						 '		<div class="item-owner">{{creator}}</div>' +
+						 '	</div>' +
+						 '	<div class="check col-xs-2 {{priority}}">' +
+						 '		<div class="symbol">+</div>' +
+						 ' 	</div>' +
+						 '</div>';
+
+	var itemTemplate = Handlebars.compile(item);
+	
+	var mainHTML = '';
+	result["contents"].sort(sortName).forEach(function(item) {
+		mainHTML += itemTemplate(item);
+	});
+
+	$('.main').html(mainHTML);
+	init();
+	
+	$("html, body").animate({ scrollTop: $(document).height() }, "fast");
+	$("*[name=new]").focus();
+}
+
+function init() {
+	// change appearance of selected option
+	$(".options-selector").click(changeOption);
+	$(".selected").trigger("click");
+
+	// indicate item is selected
+	$(".check").click(selectItem);
+
+	// remove completed items
+	$(".complete-button").click(completeItems);
+	$(".undo-button").click(undoItems);
+	$(".delete-button").click(deleteItems);
+
+	// for editing
+	$(".item-name").blur(editName);
+
+	// add new item
+	$(".menu-left").unbind("click").click(newItem);
+
+	$(".done").children(".check").addClass("blue");
+}
+
+/****************************************** 
+ * for editing items
+ ******************************************/
+
+function newItem(e) {
+	console.log("in newItem...");
+	console.log("calling addItem...");
+	var getURL = "/items/add/";
+	console.log("calling callback from newItem");
 	$.get(getURL, displayListCallback);
 }
 
-function displayListCallback(result) {
-	var header ='	<div class="menu-left col-xs-2">lists</div>	' +
-							'	<div class="menu-center col-xs-8">	' +
-							'		<h1 class="title">{{name}}</h1>	' +
-							'	</div>	' +
-							'	<div href="#" class="menu-right col-xs-2">edit</div>';
-	var headerTemplate = Handlebars.compile(header);
-	var headerHTML = headerTemplate(result);
-	$('header').html(headerHTML);
+function editName(e) {
+	var oldname = $(this).attr('name');
+	var newname = $(this).val()
 
-	var main = 	'	<div class="add-form">	' +
-							'		<form id="addItemForm" role="form" method="get" action="/list/edit/itemAdd/' + currentList + '">	' +
- 					   	'		 	<label for="name">Name:</label>	' +
-					    '		 	<input type="text" class="form-control" id="name" placeholder="name" name="name">	' +
-  				    '			<label for="quantity">Quantity:</label>	' +
-					    '			<input type="text" class="form-control" id="quantity" placeholder="quantity" name="quantity"> ' +
-							'			</br>	' +
-							'			<input type="submit" id="submitBtn" class="btn btn-success" value="Add the item"></input>	' +
-							'	 	</form>	' +
-							'	</div>	' +
-							'	<div class="add">	' +
-							'		+	' +
-							'	</div>	' +
-							' {{#each contents}}	' +
-							'	<div class="element item-element row col-xs-12">	' +
-							'		<div class="info col-xs-5">	' +
-							'			<text class="list-name">{{name}}</text>	' +
-							'		</div>	' +
-							'		<div class="quantity col-xs-2">	' +
-							'			<div class="">{{quantity}}</div>	' +
-							'		</div>	' +
-							'		<div class="complete col-xs-2">	' +
-							'			<div class="status {{complete}}">{{complete}}</div>	' +
-							'		</div>	' +
-							'		<div class="edit edit-item col-xs-3">	' +
-							'			<div class="delete delete-{{name}}"><a href="/list/edit/itemDelete/' + currentList + '/{{name}}">delete</a></div>	' +
-							'		</div>	' +
-							'	</div>	' +
-							'	{{/each}}';
+	$(this).attr('name', newname);
+	$(this).attr('val', newname);
+	console.log("oldname: " + oldname + " newname: " + $(this).val());
+	if (newname == "")
+		newname = oldname;
 
-	var mainTemplate = Handlebars.compile(main);
-	var mainHTML = mainTemplate(result);
-	$('.main').html(mainHTML);
-		
-	displayListJQuery();
+	var getURL = "/items/update/" + oldname + "/" + $(this).val();
+	console.log("calling callback from editName");
+	$.get(getURL, displayListCallback);
 }
 
-function displayListJQuery() {
-	// make sure content fits within middle section
-	var headerHeight = $('header').height();
-	var footerHeight = $('footer').height();
 
-	$('.main').css('margin-top', headerHeight);
-	$('.main').css('margin-bottom', footerHeight); 
+/****************************************** 
+ * for the footer buttons
+ ******************************************/
 
-	$('.add').css('top', headerHeight);
-	$('.add-form').css('top', headerHeight + $('.add').height());
-	$('.edit').css('height', $('.element').height());
-
-	$('.menu-right').click(function() {
-		function hideEdit(callback) {
-			$('.add-form').hide();
-			callback();
-		}
-
-		hideEdit(function() {
-			$('.add').toggle('slide', {direction: 'up'});
-		});
-		
-		if (parseInt($('.main').css('margin-top')) == headerHeight) {
-			$('.main').animate({'margin-top': headerHeight + $('.add').height()});
-		} else {
-			$('.main').animate({'margin-top': headerHeight});
-		}
-
-  	$('.edit').toggle('slide', {direction: 'right'});
-		$('.menu-right').text($(this).text() == 'edit' ? 'done' : 'edit');
-	});
-
-	$('.add').click(function() {
-		$('.add-form').toggle();
-	});
-
-	$('.item-element .complete').click(function() {
-		if ($(this).find('.status').is('.todo')) {
-			$(this).find('.status').removeClass('todo').addClass('done');
-			$(this).find('.status').html('done');
-		}
-		else if($(this).find('.status').is('.done')) {
-			$(this).find('.status').removeClass('done').addClass('todo');
-			$(this).find('.status').html('todo');
-		}
-	});
-	$('.menu-left').click(displayLists);
+function completeItems(e) {
+	console.log("complete");
+	$(".checked").parent().removeClass("todo").addClass("done");
+	$(".checked").siblings().addClass("blue");
+	hideChecked(e);
 }
+
+function undoItems(e) {
+	console.log("undoing");
+	$(".checked").parent().removeClass("done").addClass("todo");
+	$(".checked").siblings().removeClass("blue");
+	hideChecked(e);
+}
+
+function deleteItems(e) {
+	hideChecked(e);
+
+	var postURL = "/items/delete/";
+	var postJSON = {};
+	$(".checked").each(function() {
+		var item = $(this).children("input").attr("name")
+		postJSON[item] = item;
+	});
+	console.log(postJSON);
+	$.post(postURL, postJSON, deleteItemsCallback);
+}
+
+function deleteItemsCallback(result) {
+	var getURL = "/lists/test";
+	$.get(getURL, displayListCallback);
+}
+
+
+/****************************************** 
+ * for changing the view options
+ ******************************************/
+
+function toggleEdit(e) {
+	$(".item-name").prop("disabled", function () {
+		return ! $(this).prop("disabled");
+	});
+}
+
+// switch between all, todo, and done
+function changeOption(e) {
+	// change selected option
+	$(".selected").removeClass("selected");
+	$(this).addClass("selected");
+
+	// uncheck all items
+	$(".checked").removeClass("checked").siblings(".check").children().text("+");
+
+	// unhide hidden items
+	$(".hidden").removeClass("hidden").css({display: "block"});
+
+	var display = $(this).attr("id");
+	if (display == "todo") {
+		$(".todo").show();
+		$(".done").hide();
+		$(".undo-button").addClass("complete-button").removeClass("undo-button");
+		$("footer").show();
+
+		$(".complete-button").click(completeItems);
+	}
+	if (display == "done") {
+		$(".todo").hide();
+		$(".done").show();
+		$(".complete-button").addClass("undo-button").removeClass("complete-button");
+		$("footer").show();
+
+		$(".undo-button").click(undoItems);
+	}
+	if (display == "all") {
+		$(".todo").show();
+		$(".done").show();
+		$("footer").hide();
+	}
+}
+
+
+/****************************************** 
+ * for selecting items
+ ******************************************/
+
+function selectItem(e) {
+	$(this).siblings(".item").addClass("checked");
+	$(this).children().text("-");
+	$(this).click(deselectItem);
+}
+
+function deselectItem(e) {
+	$(this).siblings(".item").removeClass("checked");
+	$(this).children().text("+");
+	$(this).click(selectItem);
+}
+
+function hideChecked(e) {
+	$(".checked").parent().addClass("hidden");
+}
+
+
+/****************************************** 
+ * for sorting items
+ ******************************************/
+
+function sortName(a, b) {
+		var aname = a.name.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+		var bname = b.name.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+
+		var acreator = a.creator.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+		var bcreator = b.creator.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+
+		if (bname == "new")
+			return 1;
+		if (aname =="new")
+			return -1;
+
+		// by name
+		if (aname < bname) //sort string ascending
+  		return -1;
+ 		if (aname > bname)
+  		return 1;
+
+		// by creator
+		if (acreator < bcreator)
+			return -1;
+		if (acreator > bcreator)
+			return 1;
+
+ 		return 0;
+}
+
+function sortCreator(a, b) {
+		var aname = a.name.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+		var bname = b.name.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+
+		var acreator = a.creator.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+		var bcreator = b.creator.replace(/\W/g, '').replace(/\d+/g, '').toLowerCase();
+
+		if (bname == "new")
+			return 1;
+		if (aname =="new")
+			return -1;
+
+		// by creator
+		if (acreator < bcreator)
+			return -1
+		if (acreator > bcreator)
+			return 1
+
+		// by name
+		if (aname < bname) //sort string ascending
+  		return -1 
+ 		if (aname > bname)
+  		return 1
+
+ 		return 0
+}
+

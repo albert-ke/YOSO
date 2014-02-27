@@ -1,4 +1,50 @@
 var data = require('../data.json');
+var lists = require('../lists.json');
+
+exports.test = function(req, res) {
+	res.json(lists);
+}
+
+exports.addItem = function(req, res) {
+	console.log("reached addItem...");
+	var newitem = {
+									"name": "new",
+									"creator": "You",
+									"status": "todo",
+									"priority": "yellow"
+								};
+	lists["contents"].push(newitem);
+	console.log("new item is "); console.log(newitem);
+	console.log("new lists looks like this"); console.log(lists);
+	res.json(lists);
+}
+
+exports.update = function(req, res) {
+	oldname = req.params.oldname;
+	newname = req.params.newname;
+
+	lists["contents"].forEach(function(item) {
+		if (item["name"] == oldname) {
+			item["name"] = newname;
+		}
+	});
+	console.log(lists);
+	res.json(lists);
+}
+
+exports.deleteItem = function(req, res) {
+	items = req.body;
+
+	lists["contents"].forEach(function(item) {
+		if (items[item["name"]]) {
+			var index = lists["contents"].indexOf(item);
+			lists["contents"].splice(index, index+1);
+			console.log('index', index, "item", item);
+		}
+	});
+
+	res.json(lists);
+}
 
 exports.listAdd = function(req, res) {
 	name = req.query.name;
@@ -35,7 +81,6 @@ exports.listDelete = function(req, res) {
 
 exports.itemAdd = function(req, res) {
 	list = req.params.list;
-	//console.log(list);
 	name = req.query.name;
 	quantity = req.query.quantity;
 	newItem = {
@@ -45,7 +90,6 @@ exports.itemAdd = function(req, res) {
 				 		};
 
 	data["lists"][list]["contents"][name] = newItem;
-	//console.log(data);
 
 	data["tab"] = "lists";
 	res.redirect('/');

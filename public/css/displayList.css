@@ -1,0 +1,302 @@
+
+/****************************************** 
+ * general styles
+ ******************************************/
+
+body {
+		background-attachment: fixed;
+		background-image: url(/img/rough_diagonal.png);
+		background-repeat: repeat;
+}
+
+.red {
+		background-color: #d9534f;
+}
+
+.yellow {
+		background-color: #f0ad4e;
+}
+
+.green {
+		background-color: #5cb85c;
+}
+
+.blue {
+		background-color: #428bca;
+}
+
+.menu-left,
+.menu-right,
+.options,
+.check,
+.complete {
+		cursor: pointer;
+}
+
+/****************************************** 
+ * header styles
+ ******************************************/
+
+.menu {
+		background-color: #5cb85c;//#428bca;//rgba(92, 184, 92, 1);//#5cb85c;
+		color: white;
+
+		position: fixed;
+    top: 0; 
+    left: 0;
+	
+		height: 36px;
+		width: 100%;
+		margin: 0;
+
+		z-index: 19;
+}
+
+.menu-left {
+		font-size: 14px;
+		padding-top: 12px;
+		padding-left: 3px;
+		text-align: left;
+}
+
+.menu-center {
+		font-size: 18px;
+		padding-top: 8px;
+		margin: 0;
+		text-align: center;
+		margin: auto;
+}
+
+.menu-right {
+		font-size: 14px;
+		padding-top: 12px;
+		padding-right: 3px;
+		text-align: right;
+}
+
+.options {
+		background-color: rgba(255, 255, 255, 0.8);//white;		
+		position: fixed; //relative;
+    top: 36px; 
+	
+		color: #5cb85c;
+		height: 36px;
+		padding: 3px 0;
+		margin: 0;
+
+		width: 100%;
+		z-index: 19;
+
+		border-bottom: 1px solid #5cb85c;
+}
+
+.options-selector {
+		border: 1px solid #5cb85c;
+		height: 28px;
+
+		padding-top: 2px;
+		text-align: center
+}
+
+.options-left {
+		border-right: none;
+		background-color: white;
+		-webkit-border-top-left-radius: 5px;
+		-webkit-border-bottom-left-radius: 5px;
+}
+
+.options-center {
+		border-right: none;
+		background-color: white;
+}
+
+.options-right {
+		//border-left: none;
+		background-color: white;
+		-webkit-border-top-right-radius: 5px;
+		-webkit-border-bottom-right-radius: 5px;
+}
+
+.selected {
+		background-color: #5cb85c;
+		color: white;
+}
+
+/****************************************** 
+ * main styles
+ ******************************************/
+
+.main {
+		padding-top: 72px; //36px;
+		padding-bottom: 64px;
+		position: relative;
+}
+
+.cell {
+		margin: 0;
+		height: 80px;
+		width: 100%;
+}
+
+.item {
+		background-color: white;
+
+		height: 72px;
+
+		position: relative;
+		top: 8px;
+		padding: 12px;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+}
+
+.item-name {
+		font-size: 18px;
+		font-style: bold;
+}
+
+.item-owner {
+		color: #aaaaaa;
+		font-style: italic;
+}
+
+.check {
+		height: 72px;
+
+		position: relative;
+		top: 8px;
+
+		text-align: center;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.symbol {
+		color: white;
+		font-size: 36px;
+		position: relative;
+		top: 8px;
+}
+
+.delete-symbol {
+		color: white;
+		font-size: 16px;
+		position: relative;
+		top: 8px;
+}
+
+.shadow {
+
+}
+
+.checked, .checked input {
+		background-color: black;
+		color: white;
+
+		transition: all 0.5s ease;
+}
+
+.checked + .check {
+		background-color: #aaaaaa;
+
+		transition: all 0.5s ease;
+}
+
+.delete {
+		background-color: black;
+}
+
+/*.checked + .check .symbol {
+		-webkit-transform: rotate(360<D-r>deg);
+		transition: all 0.5s ease;
+}*/
+
+.done .item, .done .item * {
+		background-color: #dddddd;
+}
+
+/****************************************** 
+ * footer styles
+ ******************************************/
+
+footer {
+		border-top: 1px solid #5cb85c;
+		color: white;
+		background-color: rgba(255, 255, 255, 0.8);//white;
+		font-size: 20px;
+		text-align: center;
+
+		position: fixed;
+    z-index: 19; 
+    bottom: 0; 
+    left: 0;
+		right: 0;
+		
+		padding: 8px 0;
+
+		width: 100%;
+		margin: 0;
+		height: 54px;
+}
+
+.complete-button:before {
+		content: "complete";
+}
+
+.complete-button {
+		background-color: #5cb85c;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.undo-button:before {
+		content: "undo";
+}
+
+.undo-button {
+		content: "undo";
+		background-color: #f0ad4e;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.delete-button {
+		background-color: #d9534f;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+input, input:focus {
+		border: none;
+		color: black;
+		outline: none;
+}
+
+.hidden {
+		opacity: 0;
+		height: 0;
+		transition: all 5s ease;
+}
+
+.permanently-hidden {
+		display: none;
+}
