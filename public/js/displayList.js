@@ -27,7 +27,7 @@ function displayListCallback(result) {
 	$('.main').html(mainHTML);
 	init();
 	console.log("end of callback");
-	$("*[name=new]").focus();
+	//$("*[name=new]").focus();
 }
 
 function displayListCallback2(result) {
@@ -37,7 +37,7 @@ function displayListCallback2(result) {
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
 						 '	<div class="check col-xs-2 {{priority}}">' +
-						 '		<div class="symbol">+</div>' +
+						 '		<div class="symbol"><span class="glyphicon glyphicon-ok"></span></div>' +
 						 ' 	</div>' +
 						 '</div>';
 
