@@ -8,13 +8,16 @@ $(document).ready(function() {
 
 function displayListCallback(result) {
 	var item = '<li class="cell row {{status}}">' +
-						 '	<div class="item col-xs-offset-1 col-xs-8">' +
+						 '	<div class="item col-xs-9">' +
 						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
 						 '	<div class="check col-xs-2 {{priority}}">' +
 						 '		<div class="symbol">+</div>' +
 						 ' 	</div>' +
+						 ' <button class="check btn btn-danger col-xs-1 permanently-hidden">' +
+						 '  <i class="glyphicon glyphicon-trash"></i>' +
+						 ' </button>' +
 						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
@@ -31,15 +34,15 @@ function displayListCallback(result) {
 }
 
 function displayListCallback2(result) {
-	var item = '<div class="cell row {{status}}">' +
+	var item = '<li class="cell row {{status}}">' +
 						 '	<div class="item col-xs-offset-1 col-xs-8">' +
 						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
-						 '	<div class="check col-xs-2 {{priority}}">' +
+						 '	<div class="delete col-xs-2 {{priority}}">' +
 						 '		<div class="symbol"><span class="glyphicon glyphicon-ok"></span></div>' +
 						 ' 	</div>' +
-						 '</div>';
+						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
 	
@@ -57,7 +60,7 @@ function displayListCallback2(result) {
 
 function init() {
 
-	$("ul").sortable();
+	$("ul").sortable({ axis: 'y' });
 
 	// change appearance of selected option
 	$(".options-selector").unbind("click").click(changeOption);
@@ -124,6 +127,18 @@ function undoItems(e) {
 	$(".checked").parent().removeClass("done").addClass("todo");
 	$(".checked").siblings().removeClass("blue");
 	hideChecked(e);
+}
+
+function deleteItem(e) {
+	$("delete").addClass("hidden");
+	var postURL = "/items/delete/";
+	var postJSON = {};
+	$("delete").each(function() {
+		var item = $(this).attr("name")
+		postJSON[item] = item;
+	});
+	console.log(postJSON);
+	$.post(postURL, postJSON, deleteItemsCallback);
 }
 
 function deleteItems(e) {
