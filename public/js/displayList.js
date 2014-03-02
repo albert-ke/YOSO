@@ -81,6 +81,10 @@ function init() {
 	$(".menu-left").unbind("click").click(newItem);
 
 	$(".done").children(".check").addClass("blue");
+
+	$(".item").click(editItem);
+	
+	//$(".item").focus(editItem);
 }
 
 /****************************************** 
@@ -93,6 +97,11 @@ function newItem(e) {
 	var getURL = "/items/add/";
 	console.log("calling callback from newItem");
 	$.get(getURL, displayListCallback);
+}
+
+function editItem(e) {
+	$(".item-edit").removeClass("item-edit");
+	$(this).addClass("item-edit");
 }
 
 function editName(e) {
@@ -215,6 +224,7 @@ function changeOption(e) {
  ******************************************/
 
 function selectItem(e) {
+	$(this).siblings(".item").removeClass("item-edit");
 	$(this).siblings(".item").addClass("checked");
 	$(this).children().text("-");
 	$(this).unbind("click").click(deselectItem);

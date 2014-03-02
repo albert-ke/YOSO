@@ -25,6 +25,7 @@ body {
 		background-color: #428bca;
 }
 
+.item,
 .menu-left,
 .menu-right,
 .options,
@@ -161,6 +162,16 @@ body {
 		font-style: italic;
 }
 
+.item-edit, .item-edit input {
+	background-color: #3FC380;
+	color: white;
+}
+
+.item-edit .item-owner {
+	/*background-color: #3FC380;*/
+	color: black;
+}
+
 .check {
 		height: 72px;
 
@@ -289,6 +300,13 @@ input, input:focus {
 		border: none;
 		color: black;
 		outline: none;
+		/*background-color: #3FC380;
+		color: white;*/
+}
+
+input:focus {
+	background-color: #3FC380;
+		color: white;
 }
 
 .hidden {
@@ -311,3 +329,7 @@ ul li .item, .check {
     /*border-radius:6px;*/
 
 }
+
+
+
+
