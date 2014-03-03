@@ -12,12 +12,12 @@ function displayListCallback(result) {
 						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
-						 '	<div class="check col-xs-2 {{priority}}">' +
+						 '	<div class="check col-xs-1 {{priority}}">' +
 						 '		<div class="symbol">+</div>' +
 						 ' 	</div>' +
-						 ' <button class="check btn btn-danger col-xs-1 permanently-hidden">' +
-						 '  <i class="glyphicon glyphicon-trash"></i>' +
-						 ' </button>' +
+						 ' <div class="delete col-xs-1">' +
+						 '  <span class="glyphicon glyphicon-trash delete-symbol"></span>' +
+						 ' </div>' +
 						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
@@ -224,6 +224,11 @@ function changeOption(e) {
  ******************************************/
 
 function selectItem(e) {
+	var footer = '<div class="col-xs-offset-1 col-xs-5 complete-button"></div>' +
+				 '<div class="col-xs-offset-1 col-xs-4 delete-button">delete</div>';
+
+
+	$("footer").html(footer);
 	$(this).siblings(".item").removeClass("item-edit");
 	$(this).siblings(".item").addClass("checked");
 	$(this).children().text("-");
@@ -235,6 +240,7 @@ function selectItem(e) {
 }
 
 function deselectItem(e) {
+	//$("footer").empty();
 	$(this).siblings(".item").removeClass("checked");
 	$(this).children().text("+");
 	$(this).unbind("click").click(selectItem);
@@ -242,6 +248,9 @@ function deselectItem(e) {
 	$(this).siblings(".item").children("input").prop("disabled", function () {
 		return ! $(this).prop("disabled");
 	});
+	if (!$("li .checked")[0]) {
+		$("footer").empty();
+	}
 
 }
 

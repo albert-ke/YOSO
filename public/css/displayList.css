@@ -30,6 +30,7 @@ body {
 .menu-right,
 .options,
 .check,
+.delete,
 .complete {
 		cursor: pointer;
 }
@@ -130,6 +131,7 @@ body {
 .main {
 		padding-top: 72px; //36px;
 		padding-bottom: 64px;
+		padding-left: 3px;
 		position: relative;
 }
 
@@ -172,15 +174,16 @@ body {
 	color: black;
 }
 
-.check {
+
+.check, .delete {
 		height: 72px;
 
 		position: relative;
 		top: 8px;
 
 		text-align: center;
-		-webkit-border-top-right-radius: 3px;
-		-webkit-border-bottom-right-radius: 3px;
+		/*-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;*/
 }
 
 .symbol {
@@ -215,7 +218,7 @@ body {
 }
 
 .delete {
-		background-color: black;
+	background-color: #d9534f;
 }
 
 /*.checked + .check .symbol {
