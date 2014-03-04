@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="author" content="Brett">
+    <!-- <meta http-equiv="X-UA-Compatible" content="IE=edge"> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Login</title>
+
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap-theme.css" rel="stylesheet">
+    <link href="css/styles.css" rel="stylesheet">
+  </head>
+
+<body>
+  <div class="navbar navbar-inverse">
+   <div class="navbar-inner">
+     <div class="container">
+        <a class="logo" href="index.html"> <img src="../img/combined_logo2.png" alt="Brand" width="170" height="44"></a>
+        <a href="/signup" class="btn btn-info navbar-btn pull-right">Signup</a>
+        <!-- <button type="button" class="btn btn-info navbar-btn pull-right" onclick="window.self.location.href='signup.html'">Sign Up</button> -->
+     </div>
+   </div>
+ </div>
+
+  <div class="col-md-6 col-md-offset-3">
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h1 class="panel-title">YOSO Login</h1>
+        </div>
+
+        <div class="panel-body">
+          <form action="/login" method="post" accept-charset="UTF-8" role="form">
+          <fieldset>
+
+            <div class="form-group">
+                <input class="form-control input-lg" placeholder="Email" name="email" type="text">
+            </div>
+
+            <div class="form-group">
+              <input class="form-control input-lg" placeholder="Password" name="password" type="password" value="">
+            </div>
+
+            <div class="checkbox">
+                <label>
+                  <input name="rememberme" type="checkbox" value="keep me logged in"> Keep me logged in
+                </label>
+            </div>
+
+            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
+
+            <a href="#"> Forgot Your Password? </a>
+          </fieldset>
+          </form>
+        </div>
+
+    </div>
+  </div>
+
+    <script src="https://code.jquery.com/jquery.js"></script>
+  <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
+  <script src="js/bootstrap.js"></script>
+
+
+</body>
+</html>

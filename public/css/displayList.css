@@ -131,8 +131,9 @@ body {
 .main {
 		padding-top: 72px; //36px;
 		padding-bottom: 64px;
-		padding-left: 3px;
-		position: relative;
+		padding-left: 7px;
+		padding-right: 7px;
+		/*position: relative;*/
 }
 
 .cell {

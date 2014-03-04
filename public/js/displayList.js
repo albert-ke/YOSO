@@ -12,7 +12,7 @@ function displayListCallback(result) {
 						 '		<input class="item-name" type="text" name="{{name}}" value="{{name}}">' + 
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
-						 '	<div class="check col-xs-1 {{priority}}">' +
+						 '	<div class="check col-xs-2 {{priority}}">' +
 						 '		<div class="symbol">+</div>' +
 						 ' 	</div>' +
 						 ' <div class="delete col-xs-1">' +
@@ -101,6 +101,8 @@ function newItem(e) {
 
 function editItem(e) {
 	$(".item-edit").removeClass("item-edit");
+	$(this).removeClass("checked");
+	$(this).children(".check").text("+");
 	$(this).addClass("item-edit");
 }
 

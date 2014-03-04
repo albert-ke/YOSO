@@ -2,7 +2,8 @@ var data = require('../data.json');
 var lists = require('../lists.json');
 
 exports.view = function(req, res) {
-	res.render('list', lists);
+	if (req.isAuthenticated()) res.render('list', lists);
+  	else res.redirect('/login');
 };
 
 exports.tab = function(req, res) {
