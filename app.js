@@ -13,12 +13,12 @@ var express = require('express')
   , mongodb = require('mongodb')
   , mongoose = require('mongoose')
   , bcrypt = require('bcrypt')
-  , SALT_WORK_FACTOR = 10;
+  , SALT_WORK_FACTOR = 10
+  , models = require('./models');
 
-var index = require('./routes/index');
-var lists = require('./routes/lists');
-var models = require('./models');
-// var friends = require('./routes/friends');
+var index = require('./routes/index')
+  , lists = require('./routes/lists');
+  // , friends = require('./routes/friends');
 
 
 mongoose.connect('localhost', 'test-yoso2');
@@ -171,27 +171,35 @@ app.get('/logout', function(req, res){
 app.post('/login', function(req, res, next) {
   req.assert('email', 'A valid email is required').len(6,64).isEmail();  //Validate email
   req.assert('password', 'A valid password of 6 to 20 characters required').len(6, 20);
-  passport.authenticate('local', function(err, user, info) {
-    if (err) { return next(err) }
-    if (!user) {
-      req.session.messages =  [info.message];
-      return res.redirect('/login');
-    }
-    req.logIn(user, function(err) {
-      if (err) { return next(err); }
-      return res.redirect('/');
-      //return app.get('/', index.view);
-    });
-  })(req, res, next);
+  var errors = req.validationErrors(); 
+  
+  if (!errors) {
+    passport.authenticate('local', function(err, user, info) {
+      if (err) { return next(err) }
+      if (!user) {
+        req.session.messages =  [info.message];
+        return res.redirect('/login');
+      }
+      req.logIn(user, function(err) {
+        if (err) { return next(err); }
+        return res.redirect('/');
+        //return app.get('/', index.view);
+      });
+    })(req, res, next);
+  }
+
+  else {
+    return res.render('login', errors[0]);
+  }
 });
 
 app.post('/signup', function(req, res, next) {
 
-  req.assert('firstname', 'First Name is required').notEmpty();      //Validate 
-  req.assert('lastname', 'Last Name is required').notEmpty();
-  req.assert('email', 'A valid email is required').len(6,64).isEmail();  //Validate email
-  req.assert('cpassword', 'Passwords must match').equals(req.body.password);
-  req.assert('password', 'A valid password of 6 to 20 characters required').len(6, 20);
+  req.assert('firstname', 'first name is required').notEmpty();      //Validate 
+  req.assert('lastname', 'last name is required').notEmpty();
+  req.assert('email', 'a valid email is required').len(6,64).isEmail();  //Validate email
+  req.assert('cpassword', 'passwords must match').equals(req.body.password);
+  req.assert('password', 'a valid password of 6 to 20 characters is required').len(6, 20);
   var errors = req.validationErrors();  
     
   if (!errors) {   //Display errors to user
@@ -229,8 +237,8 @@ app.post('/signup', function(req, res, next) {
 
   }  
   else {
-    console.log(errors);
-    return res.render('signup');
+    console.log(errors[0]);
+    return res.render('signup', errors[0]);
   }   
 });
 

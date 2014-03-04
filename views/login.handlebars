@@ -11,7 +11,7 @@
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <link href="css/bootstrap-theme.css" rel="stylesheet">
-    <link href="css/styles.css" rel="stylesheet">
+    <link href="css/login.css" rel="stylesheet">
   </head>
 
 <body>
@@ -44,6 +44,12 @@
               <input class="form-control input-lg" placeholder="Password" name="password" type="password" value="">
             </div>
 
+            {{#if param}}
+              <div class="form-group has-error">
+                <p style="color:red" class="error-msg">{{param}}: {{msg}}</p>
+              </div>
+            {{/if}}
+
             <div class="checkbox">
                 <label>
                   <input name="rememberme" type="checkbox" value="keep me logged in"> Keep me logged in
@@ -55,6 +61,7 @@
             <a href="#"> Forgot Your Password? </a>
           </fieldset>
           </form>
+
         </div>
 
     </div>
