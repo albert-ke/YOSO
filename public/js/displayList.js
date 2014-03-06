@@ -15,9 +15,9 @@ function displayListCallback(result) {
 						 '	<div class="check col-xs-2 {{priority}}">' +
 						 '		<div class="symbol">+</div>' +
 						 ' 	</div>' +
-						 ' <div class="delete col-xs-1">' +
-						 '  <span class="glyphicon glyphicon-trash delete-symbol"></span>' +
-						 ' </div>' +
+						 // ' <div class="delete col-xs-1">' +
+						 // '  <span class="glyphicon glyphicon-trash delete-symbol"></span>' +
+						 // ' </div>' +
 						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);

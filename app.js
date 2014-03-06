@@ -17,8 +17,8 @@ var express = require('express')
   , models = require('./models');
 
 var index = require('./routes/index')
-  , lists = require('./routes/lists');
-  // , friends = require('./routes/friends');
+  , lists = require('./routes/lists')
+  , friends = require('./routes/friends');
 
 
 mongoose.connect('localhost', 'test-yoso2');
@@ -147,7 +147,10 @@ app.get('/list/contents/:list', lists.listContents);
 app.get('/list/edit/itemAdd/:list', lists.itemAdd);
 app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 
-// app.get('/friends/all', friends.listAll);
+app.get('/friends', friends.listAll);
+// app.get('/friends', function(req, res){
+//   res.render('friends', { user: req.user, message: req.session.messages });
+// });
 //app.get('/friends/edit/friendAdd', friends.friendAdd);
 //app.get('/friends/edit/friendDelete/:firstname/:lastname', friends.friendDelete);
 
@@ -172,7 +175,7 @@ app.post('/login', function(req, res, next) {
   req.assert('email', 'A valid email is required').len(6,64).isEmail();  //Validate email
   req.assert('password', 'A valid password of 6 to 20 characters required').len(6, 20);
   var errors = req.validationErrors(); 
-  
+
   if (!errors) {
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err) }
