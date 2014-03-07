@@ -4,13 +4,8 @@ var models = require('../models');
 
 
 exports.view = function(req, res) {
-	if (req.isAuthenticated()) res.render('list', lists);
-  	else res.redirect('/login');
- 	// var email = req.user;
-  // console.log(email);
- 	// if (req.isAuthenticated()) res.redirect('/friends');
-  //  	else res.redirect('/login');
-  	
+	if (req.isAuthenticated()) {res.render('list', lists);}
+  	else res.redirect('/login');	
 };
 
 exports.tab = function(req, res) {

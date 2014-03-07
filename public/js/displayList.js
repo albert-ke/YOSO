@@ -13,15 +13,16 @@ function displayListCallback(result) {
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
 						 '	<div class="check col-xs-2 {{priority}}">' +
-						 '		<div class="symbol">+</div>' +
+						 // '		<div class="symbol">+</div>' +
+						 '		<img src="img/checkbox-unchecked.png" alt="checkoff">' +
 						 ' 	</div>' +
-						 // ' <div class="delete col-xs-1">' +
-						 // '  <span class="glyphicon glyphicon-trash delete-symbol"></span>' +
-						 // ' </div>' +
+						 ' <button class="check btn btn-danger col-xs-1 permanently-hidden">' +
+						 '  <i class="glyphicon glyphicon-trash"></i>' +
+						 ' </button>' +
 						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
-	
+
 	var mainHTML = '';
 	result["contents"].sort(sortName).forEach(function(item) {
 		mainHTML += itemTemplate(item);
@@ -40,12 +41,13 @@ function displayListCallback2(result) {
 						 '		<div class="item-owner">{{creator}}</div>' +
 						 '	</div>' +
 						 '	<div class="delete col-xs-2 {{priority}}">' +
-						 '		<div class="symbol"><span class="glyphicon glyphicon-ok"></span></div>' +
+						 // '		<div class="symbol"><span class="glyphicon glyphicon-ok"></span></div>' +
+						 '		<span><img src="img/checkbox-unchecked.png" alt="checkoff"></span>' +
 						 ' 	</div>' +
 						 '</li>';
 
 	var itemTemplate = Handlebars.compile(item);
-	
+
 	var mainHTML = '';
 	result["contents"].sort(sortName).forEach(function(item) {
 		mainHTML += itemTemplate(item);
@@ -53,7 +55,7 @@ function displayListCallback2(result) {
 
 	$('.main').html(mainHTML);
 	init();
-	
+
 	$("html, body").animate({ scrollTop: $(document).height() }, "fast");
 	$("*[name=new]").focus();
 }
@@ -81,10 +83,8 @@ function init() {
 	$(".menu-left").unbind("click").click(newItem);
 
 	$(".done").children(".check").addClass("blue");
-
-	$(".item").click(editItem);
-	
-	//$(".item").focus(editItem);
+	// $(".checked").siblings(".check img").attr("src","img/checkbox-checked.png");
+	// $("img.unchecked").siblings(".check img").attr("src","img/checkbox-unchecked.png");
 }
 
 /****************************************** 
@@ -97,13 +97,6 @@ function newItem(e) {
 	var getURL = "/items/add/";
 	console.log("calling callback from newItem");
 	$.get(getURL, displayListCallback);
-}
-
-function editItem(e) {
-	$(".item-edit").removeClass("item-edit");
-	$(this).removeClass("checked");
-	$(this).children(".check").text("+");
-	$(this).addClass("item-edit");
 }
 
 function editName(e) {
@@ -226,14 +219,8 @@ function changeOption(e) {
  ******************************************/
 
 function selectItem(e) {
-	var footer = '<div class="col-xs-offset-1 col-xs-5 complete-button"></div>' +
-				 '<div class="col-xs-offset-1 col-xs-4 delete-button">delete</div>';
-
-
-	$("footer").html(footer);
-	$(this).siblings(".item").removeClass("item-edit");
 	$(this).siblings(".item").addClass("checked");
-	$(this).children().text("-");
+	$(this).children().attr("src","img/checkbox-checked.png");;
 	$(this).unbind("click").click(deselectItem);
 
 	$(this).siblings(".item").children("input").prop("disabled", function () {
@@ -242,17 +229,13 @@ function selectItem(e) {
 }
 
 function deselectItem(e) {
-	//$("footer").empty();
 	$(this).siblings(".item").removeClass("checked");
-	$(this).children().text("+");
+	$(this).children().attr("src","img/checkbox-unchecked.png");;
 	$(this).unbind("click").click(selectItem);
 
 	$(this).siblings(".item").children("input").prop("disabled", function () {
 		return ! $(this).prop("disabled");
 	});
-	if (!$("li .checked")[0]) {
-		$("footer").empty();
-	}
 
 }
 
