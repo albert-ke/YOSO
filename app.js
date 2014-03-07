@@ -20,24 +20,14 @@ var index = require('./routes/index')
 
 
 
-var uristring =
-process.env.MONGOLAB_URI ||
-process.env.MONGOHQ_URL ||
-'mongodb://moose:moose@ds033599.mongolab.com:33599/yoso';
+mongoose.connect('mongodb://moose:moose@ds033599.mongolab.com:33599/yoso');
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback() {
+  console.log('Connected to DB');
+});
 
-// The http server will listen to an appropriate port, or default to
-// port 5000.
-var theport = process.env.PORT || 5000;
-
-// Makes connection asynchronously.  Mongoose will queue up database
-// operations and release them when the connection is complete.
-mongoose.connect(uristring, function (err, res) {
-  if (err) {
-  console.log ('ERROR connecting to: ' + uristring + '. ' + err);
-  } else {
-  console.log ('Succeeded connected to: ' + uristring);
-  }
-});var app = express();
+var app = express();
 
 // all environments
 app.set('port', process.env.PORT || 3000);
