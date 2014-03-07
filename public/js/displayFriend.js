@@ -7,23 +7,8 @@ $(document).ready(function() {
 
 function initializePage() {
 	console.log('friends');
-	// var item = '<li>' +
-	// 					 '	<div class="item col-xs-9">' + 
-	// 					 '		<div>{{email}}</div>' +
-	// 					 '	</div>' +
-	// 					 '</li>';
-
-	// var itemTemplate = Handlebars.compile(item);
-	
-	// var mainHTML = itemTemplate;
-	// result["contents"].sort(sortName).forEach(function(item) {
-	// 	mainHTML += itemTemplate(item);
-	// });
-
-	//$('.main').html(mainHTML);
-	$("button").click(searchFriend);
-	// console.log("end of callback");
-	//$("*[name=new]").focus();
+	$(".search").click(searchFriend);
+	$(".add-friend").click(addToFriends);
 }
 
 function searchFriend(e) {
@@ -42,9 +27,9 @@ function displayQuery(search_query) {
 	             '    <div class="name">'+ search_query.name.first + '</div>' +
 	             '    <div class="email">' + search_query.email + '</div>' +
 	             '  </div>' +
-	             '  <div class="check col-xs-2">' +
-	             '    <img src="img/checkbox-unchecked.png" alt="checkoff">' +
-	             '  </div>' +
+	             '<button type="button" class="add-friend btn btn-default btn-lg">' +
+  						'<span class="glyphicon glyphicon-plus"></span>' +
+						'</button>' +
 	             '</li>';
 
 	// var itemTemplate = Handlebars.compile(item);
@@ -55,6 +40,12 @@ function displayQuery(search_query) {
 	// });
 
 	$('.main').html(item);
-	//location.reload();
+	initializePage();
+}
+
+function addToFriends(e) {
+	console.log("adding to friends");
+	var newFriend = $(".email").html();
+	$.get("friends/add/" + newFriend);
 }
 

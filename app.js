@@ -90,8 +90,12 @@ app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 //   res.render('friends', req.user);
 // });
 
-app.get('/friends/:search', friends.search);
-app.get('/friends', friends.display);
+app.get('/friends/:search', ensureAuth, friends.search);
+// app.get('/friends', ensureAuth, friends.display);
+app.get('/friends', ensureAuth, function(req, res){
+  res.render('friends');
+});
+app.get('/friends/:add/:email', ensureAuth, friends.add);
   // var search = req.params.search;
    // User.find({ 'email': search}
 // });
@@ -107,7 +111,6 @@ app.get('/login', function(req, res){
 });
 
 app.get('/signup', function(req, res){
-  //console.log(req.user);
   res.render('signup', { user: req.user, message: req.session.messages });
 });
 
@@ -132,7 +135,7 @@ http.createServer(app).listen(app.get('port'), function(){
 //   the request is authenticated (typically via a persistent login session),
 //   the request will proceed.  Otherwise, the user will be redirected to the
 //   login page.
-function ensureAuthenticated(req, res, next) {
+function ensureAuth(req, res, next) {
   if (req.isAuthenticated()) { return next(); }
-  res.redirect('/login')
+  else res.redirect('/login');
 }
