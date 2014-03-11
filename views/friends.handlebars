@@ -47,20 +47,14 @@
 
 
 
-	<div class="main" id="list">
-		<!-- {{#each friends}}
-		<ul id="list">
-			<li>
-				<div>{{name.first}} {{name.last}}</div>
-			</li>
-
-			<li>
-				<div>{{email}}</div>
-			</li>
-		</ul>
-		{{/each}} -->
-
-	</div>
+	<ul class="main" id="list">
+		{{#each .}}
+		<li>
+			<div> {{name.first}} {{name.last}} </div> 
+			<div>{{email}}</div>
+		</li>
+		{{/each}}
+	</ul>
 
 
 

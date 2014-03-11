@@ -23,11 +23,10 @@ exports.signup = function(req, res, next) {
 
     // check if user already exists
     models.User.findOne({ 'email': req.body.email}, function (err, exists){
-      console.log("inside function")
       if (err) return next(err);
       if (exists) {
         console.log('User already exists');
-        return res.redirect('/signup');
+        return res.render('signup', {msg: "Email already exists. Please choose a different email."});
       }
       else {
         console.log('about to log user in');
@@ -56,30 +55,27 @@ exports.signup = function(req, res, next) {
 
 
 exports.login = function(req, res, next) {
-  req.assert('email', 'A valid email is required').len(6,64).isEmail();  //Validate email
-  req.assert('password', 'A valid password of 6 to 20 characters required').len(6, 20);
+  req.assert('email', 'a valid email is required').len(6,64).isEmail();  //Validate email
+  req.assert('password', 'a valid password of 6 to 20 characters is required').len(6, 20);
   var errors = req.validationErrors(); 
 
   if (!errors) {
     passport.authenticate('local', function(err, user, info) {
       if (err) { return next(err) }
       if (!user) {
-        req.session.messages =  [info.message];
-        return res.redirect('/login');
+        req.session.messages = [info.message];
+        console.log(req.session.messages);
+        return res.render('login', {'msg': req.session.messages});
       }
       req.logIn(user, function(err) {
-        //console.log(req.user.email);
         if (err) { return next(err); }
         return res.redirect('/');
-        // return res.redirect('/');
-        //console.log(user);
-        // return res.render('friends', {'userID': user});
-        // return app.get('/', index.view);
       });
     })(req, res, next);
   }
 
   else {
+    console.log(errors[0]);
     return res.render('login', errors[0]);
   }
 }

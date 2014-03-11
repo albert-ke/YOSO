@@ -85,25 +85,12 @@ app.get('/list/contents/:list', lists.listContents);
 app.get('/list/edit/itemAdd/:list', lists.itemAdd);
 app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 
-// app.get('/friends', function(req, res) {
-//   console.log(req.user);
-//   res.render('friends', req.user);
-// });
 
 app.get('/friends/:search', ensureAuth, friends.search);
-// app.get('/friends', ensureAuth, friends.display);
-app.get('/friends', ensureAuth, function(req, res){
-  res.render('friends');
-});
-app.get('/friends/:add/:email', ensureAuth, friends.add);
-  // var search = req.params.search;
-   // User.find({ 'email': search}
-// });
-// app.get('/friends', function(req, res){
-//   res.render('friends', { user: req.user, message: req.session.messages });
-// });
-//app.get('/friends/edit/friendAdd', friends.friendAdd);
-//app.get('/friends/edit/friendDelete/:firstname/:lastname', friends.friendDelete);
+app.get('/friends', ensureAuth, friends.display);
+app.get('/friends/display', ensureAuth, friends.display2);
+app.get('/friends/add/:email', ensureAuth, friends.add);
+
 
 
 app.get('/login', function(req, res){

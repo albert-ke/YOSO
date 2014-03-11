@@ -12,7 +12,8 @@ var userSchema = mongoose.Schema({
   },
   phone: Number,
   lists: [listSchema],
-  friends: [mongoose.Types.ObjectId],
+  // friends: [mongoose.Types.ObjectId],
+  friends: [{type: mongoose.Schema.Types.ObjectId, ref: 'User'}],
   accessToken: { type: String } // Used for Remember Me
 });
 
