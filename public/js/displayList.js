@@ -108,6 +108,9 @@ function selectView(e) {
 	// uncheck items
 	$(".checked").children(".item").children(".item-box").html("");
 	$(".checked").removeClass("checked").addClass("unchecked");
+
+	checkCount = 0;
+	updateFooter();
 }
 
 
