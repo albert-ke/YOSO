@@ -48,12 +48,14 @@
 
 
 	<ul class="main" id="list">
-		{{#each .}}
-		<li>
-			<div> {{name.first}} {{name.last}} </div> 
-			<div>{{email}}</div>
-		</li>
-		{{/each}}
+		{{#each this}}
+        	<li class="cell row-fluid col-xs-9">
+        		<div class="item">
+	        		<div div class="name">{{name.first}} {{name.last}}</div>
+	        		<div div class="email">{{email}}</div>
+        		</div>
+        	</li>
+    	{{/each}}
 	</ul>
 
 

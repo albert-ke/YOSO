@@ -1,8 +1,8 @@
 'use strict';
 
 $(document).ready(function() {
-	$.get("/friends/display", displayFriends);
-	// initializePage();
+	// $.get("/friends/display", displayFriends);
+	initializePage();
 })
 
 
@@ -10,9 +10,9 @@ function initializePage() {
 	console.log('friends');
 	$(".search").click(searchFriend);
 	$(".add-friend").click(addToFriends);
-	$('input:text').focus(function(){
-        $(this).val('');
-    });
+	// $('input:text').focus(function(){
+ //        $(this).val('');
+ //    });
 }
 
 function searchFriend(e) {
@@ -37,14 +37,14 @@ function displaySearch(search_query) {
 		var mainHTML = '';
 		for (var i = 0, len = search_query.length; i < len; i++) {
   			console.log(i);
-	    	var item = '<li class="cell row">' +
-		             '  <div class="item col-xs-9">' + 
-		             '    <div class="name">'+ search_query[i].name.first + ' ' + search_query[i].name.last + '</div>' +
-		             '    <div class="email">' + search_query[i].email + '</div>' +
-		             '  </div>' +
-		             '<button type="button" class="add-friend btn btn-default btn-lg">' +
-	  						'<span class="glyphicon glyphicon-plus"></span>' +
-							'</button>' +
+	    	var item = '<li class="cell row-fluid">' +
+			             '<div class="item col-xs-9">' + 
+				             '<div class="name">'+ search_query[i].name.first + ' ' + search_query[i].name.last + '</div>' +
+				             '<div class="email">' + search_query[i].email + '</div>' +
+			             '</div>' +
+			             '<button type="button" class="add-friend btn btn-default btn-lg">' +
+		  						'<span class="glyphicon glyphicon-plus"></span>' +
+						 '</button>' +
 		             '</li>';
 			mainHTML += item;
 		}
@@ -73,10 +73,12 @@ function displayFriends(friends) {
 	var friendHTML = '';
 	for (var i = 0, len = friends.length; i < len; i++) {
   		console.log(i);
-    	var friendHTML = '<li>' +
-					'<div>' + friends[i].name.first + ' ' + friends[i].name.last + '</div>' +
-					'<div>' + friends[i].email + '</div>' +
-				'</li>';
+    	var friendHTML = '<li class="cell row-fluid col-xs-9">' +
+	    					'<div class="item">' +
+								'<div class="name">' + friends[i].name.first + ' ' + friends[i].name.last + '</div>' +
+								'<div class="email">' + friends[i].email + '</div>' +
+							'</div>' +
+						'</li>';
 		mainHTML += friendHTML;
 	}
 

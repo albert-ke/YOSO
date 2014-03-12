@@ -17,8 +17,8 @@ var models   = require('./models');
 // Connect to the Mongo database, whether locally or on Heroku
 // MAKE SURE TO CHANGE THE NAME FROM 'lab7' TO ... IN OTHER PROJECTS
 var local_database_name = 'test-yoso2';
-var local_database_uri  = 'mongodb://heroku_app22580854:apuf6rkhtv9fgoe1kmv6q5pcvg@ds033439.mongolab.com:33439/heroku_app22580854';
-//'mongodb://localhost/' + local_database_name
+// var local_database_uri  = 'mongodb://heroku_app22580854:apuf6rkhtv9fgoe1kmv6q5pcvg@ds033439.mongolab.com:33439/heroku_app22580854';
+var local_database_uri = 'mongodb://localhost/' + local_database_name
 var database_uri = process.env.MONGOLAB_URI || local_database_uri
 mongoose.connect(database_uri);
 

@@ -88,7 +88,7 @@ app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 
 app.get('/friends/:search', ensureAuth, friends.search);
 app.get('/friends', ensureAuth, friends.display);
-app.get('/friends/display', ensureAuth, friends.display2);
+// app.get('/friends/display', ensureAuth, friends.display2);
 app.get('/friends/add/:email', ensureAuth, friends.add);
 
 
