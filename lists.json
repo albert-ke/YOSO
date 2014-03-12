@@ -1,25 +1,25 @@
 {
 	"contents": [
 		{
-			"name": "cottage cheese",
+			"name": "cookies",
 			"creator": "Bert Yee",
 			"status": "todo",
 			"priority": "yellow"
 		},
 		{
-			"name": "roast duck",
+			"name": "toilet paper",
 			"creator": "Justin Yu",
 			"status": "todo",
 			"priority": "yellow"
 		},
 		{
-			"name": "moose",
+			"name": "mochi",
 			"creator": "Albert Ke",
 			"status": "done",
 			"priority": "yellow"
 		},
 		{
-			"name": "roast cow",
+			"name": "plastic cups",
 			"creator": "You",
 			"status": "todo",
 			"priority": "yellow"
@@ -31,13 +31,13 @@
 			"priority": "yellow"
 		},
 		{
-			"name": "2 packs of ribs",
+			"name": "beef ribs",
 			"creator": "Jon Corea",
 			"status": "todo",
 			"priority": "yellow"
 		},
 		{
-			"name": "16-pack Sprecher cherry cola",
+			"name": "cherry cola",
 			"creator": "Kyle Poland",
 			"status": "todo",
 			"priority": "yellow"

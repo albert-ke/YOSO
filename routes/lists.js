@@ -6,9 +6,10 @@ exports.test = function(req, res) {
 }
 
 exports.addItem = function(req, res) {
-	console.log("reached addItem...");
+	var name = req.params.name;
+	console.log("reached addItem...", name);
 	var newitem = {
-									"name": "new",
+									"name": name,
 									"creator": "You",
 									"status": "todo",
 									"priority": "yellow"
@@ -34,30 +35,48 @@ exports.update = function(req, res) {
 
 exports.deleteItem = function(req, res) {
 	itemstodelete = req.body;
-console.log(itemstodelete);
-console.log("cow");
-
 	for (i = 0; i < lists["contents"].length; i++) {
 		console.log(i, lists["contents"][i]["name"], "!");
 		if (lists["contents"][i]["name"] in itemstodelete) {
 			console.log("delete name", lists["contents"][i]["name"]);
-			//console.log("before: ", lists["contents"])
 			lists["contents"].splice(i, 1);
 			i--;
-			//console.log("after: ", lists["contents"])
 		}
 	}
-/*
-	lists["contents"].forEach(function(item) {
-		if (items[item["name"]]) {
-			console.log("deleting", items[item["name"]]);
-			var index = lists["contents"].indexOf(item);
-			lists["contents"].splice(index, index+1);
-			console.log('index', index, "item", item);
+	res.json(lists);
+}
+
+exports.completeItem = function(req, res) {
+	itemstodelete = req.body;
+	console.log(itemstodelete);
+	
+	console.log("1", lists["contents"]);
+	for (i = 0; i < lists["contents"].length; i++) {
+		//console.log(i, lists["contents"][i]["name"], "!");
+		if (lists["contents"][i]["name"] in itemstodelete) {
+			console.log("delete name", lists["contents"][i]["name"]);
+			lists["contents"][i]["status"] = "done";
 		}
-	});*/
-console.log(lists);
-console.log("moose");
+	}
+
+	console.log("2", lists["contents"]);
+	res.json(lists);
+}
+
+exports.undoItem = function(req, res) {
+	itemstodelete = req.body;
+	console.log(itemstodelete);
+	
+	console.log("1", lists["contents"]);
+	for (i = 0; i < lists["contents"].length; i++) {
+		//console.log(i, lists["contents"][i]["name"], "!");
+		if (lists["contents"][i]["name"] in itemstodelete) {
+			console.log("delete name", lists["contents"][i]["name"]);
+			lists["contents"][i]["status"] = "todo";
+		}
+	}
+
+	console.log("2", lists["contents"]);
 	res.json(lists);
 }
 

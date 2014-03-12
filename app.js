@@ -74,8 +74,11 @@ app.get('/tab', index.tab);
 
 app.get('/lists/test', lists.test);
 app.post('/items/delete/', lists.deleteItem);
+app.post('/items/complete/', lists.completeItem);
+app.post('/items/undo/', lists.undoItem);
+
 app.get('/items/update/:oldname/:newname', lists.update);
-app.get('/items/add/', lists.addItem);
+app.get('/items/add/:name', lists.addItem);
 
 app.get('/lists/all', lists.listAll);
 app.get('/list/edit/listAdd', lists.listAdd);

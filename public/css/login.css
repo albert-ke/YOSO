@@ -1,0 +1,319 @@
+/****************************************** 
+ * general styles
+ ******************************************/
+
+@font-face
+{
+		font-family: blackjack;
+		src: url(../fonts/black_jack.ttf);
+} 
+
+body {
+		background-attachment: fixed;
+		background-image: url(../img/ticks.png);
+		background-repeat: repeat;
+}
+
+/****************************************** 
+ * header styles
+ ******************************************/
+
+.logo {
+		font-family: blackjack;
+		font-size: 42px;
+		height: 100%;
+		padding: 0;
+}
+
+.logo text {
+		top: -6px;
+		position: relative;
+}
+
+.nav {
+		font-size: 16px;
+		height: 100%;
+		text-align: right;
+		padding: 16px 0 0 0;
+}
+
+.todo-nav {
+		//background-color: #e74c3c;
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+
+		padding: 2px 3px;
+}
+
+.done-nav {
+		//background-color: #D16943;
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+
+		padding: 2px 3px;
+}
+
+.menu {
+		background-color: #452716; //#5cb85c;
+		color: white;
+
+		position: fixed;
+    top: 0; 
+    left: 0;
+	
+		height: 54px;
+		width: 100%;
+		margin: 0;
+
+		z-index: 19;
+}
+
+
+/****************************************** 
+ * main styles
+ ******************************************/
+
+.main {
+		padding-top: 54px;//72px; //36px;
+		padding-bottom: 64px;
+		position: relative;
+}
+
+.cell {
+		margin: 0;
+		height: 80px;
+		width: 100%;
+}
+
+.item {
+		background-color: white;
+
+		height: 72px;
+
+		position: relative;
+		top: 8px;
+		padding: 0;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.item-name {
+		padding-top: 8px;
+		height: 100%;
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+}
+
+.name {
+		font-weight: bold;
+		font-size: 20px;
+}
+
+.user {
+		font-style: italic;
+		color: #aaaaaa;
+}
+
+.item-box {
+		height: 100%;
+		
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.item-box span {
+		font-size: 42px;
+		left: -4px;
+		top: 12px;
+		color: white;
+}
+
+.todo .item-box {
+		background-color: #f39c12;
+}
+
+.done .item-box {
+		background-color: #1abc9c;
+}
+
+.checked .item .item-name, .checked .item .item-name * {
+		background-color: #e74c3c;
+		color: white
+}
+
+/****************************************** 
+ * footer styles
+ ******************************************/
+::-webkit-input-placeholder {
+   color: black;
+}
+footer {
+		border-top: 1px solid #dddddd;
+		color: white;
+		background-color: rgba(255, 255, 255, 0.8);//white;
+		font-size: 20px;
+		text-align: center;
+
+		position: fixed;
+    z-index: 19; 
+    bottom: 0; 
+    left: 0;
+		right: 0;
+		
+		padding: 8px 0;
+
+		width: 100%;
+		margin: 0;
+		//height: 54px;
+}
+
+.new-name, .email, .password {
+		padding: 4px 16px;
+		background-color: #95a5a6;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+		margin-bottom: 12px;
+}
+
+.complete-button:before {
+		content: "complete";
+}
+
+.new-button:before {
+		content: "new";
+}
+
+.add-button:before {
+		content: "add";
+}
+
+.undo-button:before {
+		content: "undo";
+}
+
+.delete-button:before {
+		content: "delete";
+}
+
+.cancel-button:before {
+		content: "cancel";
+}
+
+.complete-button, .new-button, .add-button, .signin-button {
+		color: white;
+		background-color: #2ecc71;//#5cb85c;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+
+		margin-top: 4px;
+		margin-bottom: 4px;
+}
+
+.undo-button {
+		content: "undo";
+		background-color: #f0ad4e;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		/*-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;*/
+}
+
+.delete-button, .cancel-button {
+		background-color: #d9534f;
+		height: 36px;
+		padding-top: 4px;
+		text-align: center;
+
+		/*-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;*/
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+input, input:focus {
+		border: none;
+		color: black;
+		outline: none;
+}
+
+.hidden {
+		opacity: 0;
+		height: 0;
+		//-webkit-transition: all 5s ease;
+}
+
+.permanently-hidden {
+		display: none;
+}
+
+
+
+
+
+
+
+.a {
+	background-color: cyan;
+}
+
+.b {
+	background-color: magenta;
+}
+
+
+.signup {
+		font-size: 16px;
+		height: 100%;
+		text-align: right;
+		padding: 16px 0 0 0;
+}
+
+.signup-link {
+		color: white;
+		background-color: #e74c3c;
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+
+		padding: 3px 5px 5px 5px;
+}
+
+.forgot {
+	padding: 0;
+}
+
+form {
+	font-size: 20px;
+	top: 36px;
+	position: relative;
+}
+
+.checkbox, .forgot {
+	font-size: 14px;
+}
+
+.checkbox {
+	margin-top: 0;
+	margin-bottom: 0;
+}

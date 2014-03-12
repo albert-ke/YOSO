@@ -15,59 +15,36 @@
   </head>
 
 <body>
-  <div class="navbar navbar-inverse">
-   <div class="navbar-inner">
-     <div class="container">
-        <a class="logo" href="index.html"> <img src="../img/combined_logo2.png" alt="Brand" width="170" height="44"></a>
-        <a href="/signup" class="btn btn-info navbar-btn pull-right">Signup</a>
-        <!-- <button type="button" class="btn btn-info navbar-btn pull-right" onclick="window.self.location.href='signup.html'">Sign Up</button> -->
-     </div>
-   </div>
- </div>
 
-  <div class="col-md-6 col-md-offset-3">
-      <div class="panel panel-default">
+	<header class="menu row">
+		<div class="col-xs-offset-1 col-xs-4 logo">
+			<text>yoso</text>
+		</div>
+		<div class="col-xs-6 nav signup">
+    	<a href="/signup" class="signup-link">sign up</a>
+		</div>
+	</header>
 
-        <div class="panel-heading">
-          <h1 class="panel-title">YOSO Login</h1>
-        </div>
-
-        <div class="panel-body">
-          <form action="/login" method="post" accept-charset="UTF-8" role="form">
-          <fieldset>
-
-            <div class="form-group">
-                <input class="form-control input-lg" placeholder="Email" name="email" type="text">
-            </div>
-
-            <div class="form-group">
-              <input class="form-control input-lg" placeholder="Password" name="password" type="password" value="">
-            </div>
-
-            {{#if param}}
-              <div class="form-group has-error">
-                <p style="color:red" class="error-msg">{{param}}: {{msg}}</p>
-              </div>
-            {{/if}}
-
-            <div class="checkbox">
-                <label>
-                  <input name="rememberme" type="checkbox" value="keep me logged in"> Keep me logged in
-                </label>
-            </div>
-
-            <input class="btn btn-lg btn-success btn-block" type="submit" value="Login">
-
-            <a href="#"> Forgot Your Password? </a>
-          </fieldset>
-          </form>
-
-        </div>
-
+	<div class="main">
+  <form class="" action="/login" method="post" accept-charset="UTF-8" role="form">
+		<input class="col-xs-offset-1 col-xs-10 email" placeholder="email" name="email" type="text">
+		<input class="password col-xs-offset-1 col-xs-10" placeholder="password" name="password" type="password" value="">
+		{{#if param}}
+			<div class="form-group has-error">
+				<p style="color:red" class="error-msg">{{param}}: {{msg}}</p>
+			</div>
+		{{/if}}
+		<div class="checkbox col-xs-offset-1 col-xs-10">
+				<input name="rememberme" type="checkbox" value="keep me logged in"> Keep me logged in
     </div>
-  </div>
+		<input class="col-xs-offset-1 col-xs-10 signin-button" type="submit" value="log in">
+		<a class="col-xs-offset-1 col-xs-10 forgot" href="#"> Forgot Your Password? </a>
+	</form>
+	</div>
 
-    <script src="https://code.jquery.com/jquery.js"></script>
+
+      
+  <script src="https://code.jquery.com/jquery.js"></script>
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script src="js/bootstrap.js"></script>
 
