@@ -1,8 +1,9 @@
 'use strict';
 
 $(document).ready(function() {
-	// $.get("/friends/display", displayFriends);
-	initializePage();
+	console.log("inside ready function");
+	$.get("/friends/display", displayFriends);
+	// initializePage();
 })
 
 

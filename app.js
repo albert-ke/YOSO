@@ -85,10 +85,12 @@ app.get('/list/contents/:list', lists.listContents);
 app.get('/list/edit/itemAdd/:list', lists.itemAdd);
 app.get('/list/edit/itemDelete/:list/:item', lists.itemDelete);
 
-
+app.get('/friends', ensureAuth, function(req, res){
+  console.log("about to render friends");
+  res.render('friends', {msg: friends});
+});
+app.get('/friends/display', ensureAuth, friends.display);
 app.get('/friends/:search', ensureAuth, friends.search);
-app.get('/friends', ensureAuth, friends.display);
-// app.get('/friends/display', ensureAuth, friends.display2);
 app.get('/friends/add/:email', ensureAuth, friends.add);
 
 

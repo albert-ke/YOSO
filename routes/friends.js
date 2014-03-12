@@ -24,22 +24,22 @@ exports.search = function(req, res) {
 }
 
 
+// exports.display = function(req, res) {
+//   console.log("inside friends.display");
+//   models.User
+
+//     .findOne({'email': req.user.email})
+//     .populate('friends', 'name email')
+//     .exec(renderFriends);
+
+//   function renderFriends(err, user) {
+//     if(err) console.log(err);
+//     console.log("displaying " + user.friends);
+//     res.render('friends', user.friends);
+//   } 
+// } 
+
 exports.display = function(req, res) {
-  console.log("inside friends.display");
-  models.User
-
-    .findOne({'email': req.user.email})
-    .populate('friends', 'name email')
-    .exec(renderFriends);
-
-  function renderFriends(err, user) {
-    if(err) console.log(err);
-    console.log("displaying " + user.friends);
-    res.render('friends', user.friends);
-  } 
-} 
-
-exports.display2 = function(req, res) {
   console.log("inside friends.display2");
   models.User
     .findOne({'email': req.user.email})
