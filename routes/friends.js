@@ -9,10 +9,10 @@ exports.search = function(req, res) {
   var search = req.params.search;
   console.log("searching for " + search);
   var searchName = new RegExp('^'+search+'$', "i");
-  // var search-email = new RegExp()
   models.User
-    .find({ $or:[{'email': searchName}, {'name.first': searchName}, {'name.last': searchName}]})
+    .find({ $or:[{'email': searchName}, {'name.first': searchName}, {'name.last': searchName}], '_id': {$nin: req.user.friends}})
     .where('_id').ne(req.user.id)
+    // .sort({'name.last': 1})
     // .where('_id').ne(req.user.friends)
     .exec(renderSearch);
 

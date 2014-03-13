@@ -11,9 +11,9 @@ function initializePage() {
 	console.log('friends');
 	$(".search").click(searchFriend);
 	$(".add-friend").click(addToFriends);
-	// $('input:text').focus(function(){
- //        $(this).val('');
- //    });
+	$('input:text').focus(function(){
+        $(this).val('');
+    });
 }
 
 function searchFriend(e) {
