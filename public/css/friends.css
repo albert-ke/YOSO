@@ -38,7 +38,7 @@ body {
  ******************************************/
 
 .menu {
-		background-color: #3FC380;//#5cb85c;//#428bca;//rgba(92, 184, 92, 1);//#5cb85c;
+		background-color: #452716;
 		color: white;
 
 		/*position: fixed;*/
@@ -340,3 +340,8 @@ img {
 /*.search {
 	padding-top:55px;
 }*/
+
+.icon-bar {
+	background-color: white;
+}
+
