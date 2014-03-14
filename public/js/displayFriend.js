@@ -48,7 +48,7 @@ function displaySearch(search_query) {
 				             '<div class="name">'+ search_query[i].name.first + ' ' + search_query[i].name.last + '</div>' +
 				             '<div class="email">' + search_query[i].email + '</div>' +
 			             '</div>' +
-			             '<button type="button" class="add-friend btn btn-default btn-lg">' +
+			             '<button type="button" class="col-xs-3 item-box">' +
 		  						'<span class="glyphicon glyphicon-plus"></span>' +
 						 '</button>' +
 		             '</li>';

@@ -57,6 +57,7 @@ body {
 		padding-top: 12px;
 		padding-left: 3px;
 		text-align: left;
+		margin-left: 4%;
 }
 
 .menu-center {
@@ -72,6 +73,7 @@ body {
 		padding-top: 12px;
 		padding-right: 3px;
 		text-align: right;
+		margin-right: 4%;
 }
 
 .options {
@@ -127,7 +129,7 @@ body {
  ******************************************/
 
 .main {
-		padding-top: 105px; //36px;
+		padding-top: 0px; //36px;
 		/*padding-bottom: 64px;*/
 		/*position: relative;*/
 }
@@ -145,15 +147,29 @@ body {
 
 		position: relative;
 		top: 8px;
-		padding: 12px;
+		padding: 0;
 
+		-webkit-border-top-left-radius: 3px;
+		-webkit-border-bottom-left-radius: 3px;
+		-webkit-border-top-right-radius: 3px;
+		-webkit-border-bottom-right-radius: 3px;
+}
+
+.item-name {
+		padding-top: 8px;
+		height: 100%;
 		-webkit-border-top-left-radius: 3px;
 		-webkit-border-bottom-left-radius: 3px;
 }
 
-.item-name {
-		font-size: 18px;
-		font-style: bold;
+.name {
+		font-weight: bold;
+		font-size: 20px;
+}
+
+.user {
+		font-style: italic;
+		color: #aaaaaa;
 }
 
 .item-owner {
@@ -161,61 +177,22 @@ body {
 		font-style: italic;
 }
 
-.check {
-		height: 72px;
-		position: relative;
-		top: 8px;
-		text-align: center;
-		vertical-align: middle;
+.item-box {
+		height: 100%;
+
 		-webkit-border-top-right-radius: 3px;
 		-webkit-border-bottom-right-radius: 3px;
-		/*padding: 2% 2% 2% 2%;*/
-		/*padding-left: 2%;*/
+		bakcground-color: #2ecc71;
+		color: #2ecc71;
 }
 
-.symbol {
+.item-box span {
+		font-size: 42px;
+		left: -4px;
+		top: 12px;
 		color: white;
-		font-size: 36px;
-		position: relative;
-		top: 8px;
 }
 
-.delete-symbol {
-		color: white;
-		font-size: 16px;
-		position: relative;
-		top: 8px;
-}
-
-.shadow {
-
-}
-
-.checked, .checked input {
-		background-color: #2C3E50;
-		color: white;
-
-		transition: all 0.5s ease;
-}
-
-.checked + .check {
-		background-color: #D2D7D3;
-
-		transition: all 0.5s ease;
-}
-
-.delete {
-		background-color: black;
-}
-
-/*.checked + .check .symbol {
-		-webkit-transform: rotate(360<D-r>deg);
-		transition: all 0.5s ease;
-}*/
-
-.done .item, .done .item * {
-		background-color: #dddddd;
-}
 
 /****************************************** 
  * footer styles
@@ -304,6 +281,8 @@ input, input:focus {
 
 ul {
  list-style-type: none;
+ padding-left: 0px;
+ padding-right: 0px;
 }
 
 ul li .item, .check {
@@ -337,11 +316,18 @@ img {
 	/*padding-left: 5%;*/
 }
 
-/*.search {
-	padding-top:55px;
-}*/
-
+.mysearch-bar {
+	padding-left:2%;
+	padding-right: 2%;
+}
+.form-group {
+	margin bottom: 0px;
+}
 .icon-bar {
 	background-color: white;
 }
+
+
+
+
 
