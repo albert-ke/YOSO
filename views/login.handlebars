@@ -15,7 +15,19 @@
   </head>
 
 <body>
+	<div class="welcome">
 
+	<div class="x">
+		<span class="glyphicon glyphicon-remove"></span> 
+	</div>
+
+		<div class="yoso">yoso</div>
+		<div class="welcome-text col-xs-offset-1 col-xs-10">
+		This app consolidates the shopping lists of you, your
+		family, and your friends so that no one has to make an extra trip if
+		someone's already there!
+		</div>
+	</div>
 	<header class="menu row">
 		<div class="col-xs-offset-1 col-xs-4 logo">
 			<text>yoso</text>
@@ -48,6 +60,9 @@
   <script src="https://code.jquery.com/ui/1.10.4/jquery-ui.js"></script>
   <script src="js/bootstrap.js"></script>
 
+		<script>
+			$(".welcome").unbind("click").click(function(){$(".welcome").hide();});
+		</script>
 
 </body>
 </html>

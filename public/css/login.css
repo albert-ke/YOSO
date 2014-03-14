@@ -14,6 +14,46 @@ body {
 		background-repeat: repeat;
 }
 
+.welcome {
+		height: 100%;
+		z-index: 9999;
+		width: 100%;
+		background-color: #452716;
+		color: white;
+		position: absolute;
+		font-family: blackjack;
+		font-size: 100px;
+		text-align: center;
+}
+
+.welcome-text {
+		font-family: Arial;
+		font-size: 14px;
+		background-color: #1abc9c;
+		padding: 12px 8px 16px 8px;
+		margin-top: 24px;
+
+		
+		-webkit-border-top-left-radius: 5px;
+		-webkit-border-bottom-left-radius: 5px;
+		-webkit-border-top-right-radius: 5px;
+		-webkit-border-bottom-right-radius: 5px;
+
+}
+
+.x {
+		z-index: 9999999;
+		position: absolute;
+		color: white;
+		font-size: 36px;
+		right: 0;
+		padding: 4px;
+}
+
+.yoso {
+		margin-top: 18%;
+}
+
 /****************************************** 
  * header styles
  ******************************************/
